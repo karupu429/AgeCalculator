@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Age Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .container {
+            width: 100%;
+            max-width: 800px;
+            margin: 20px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .ad-section {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .ad-video {
+            width: 100%;
+            height: 300px;
+            background-color: #ddd;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+        .ad-message {
+            font-size: 16px;
+        }
+        .age-calculator-section {
+            display: none;
+        }
+        .input-field {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .calculate-btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .calculate-btn:hover {
+            background-color: #45a049;
+        }
+        .result {
+            font-size: 18px;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Age Calculator</h1>
+            <p>Watch the ad, then calculate your age!</p>
+        </div>
+        
+        <div class="ad-section" id="adSection">
+            <div class="ad-video">
+                <p>Watch this video ad to continue.</p>
+            </div>
+            <p class="ad-message">Watch the full video to proceed to the Age Calculator</p>
+            <button class="calculate-btn" onclick="startCalculator()">Watch Video and Proceed</button>
+        </div>
+
+        <div class="age-calculator-section" id="ageCalculatorSection">
+            <h2>Enter Your Date of Birth</h2>
+            <input type="date" id="dob" class="input-field">
+            <button class="calculate-btn" onclick="calculateAge()">Calculate Age</button>
+
+            <div class="result" id="ageResult"></div>
+        </div>
+
+        <div class="footer">
+            <p>Ads help us keep the site free!</p>
+        </div>
+    </div>
+
+    <script>
+        // Simulate watching the ad and then showing the calculator
+        function startCalculator() {
+            document.getElementById("adSection").style.display = "none";
+            document.getElementById("ageCalculatorSection").style.display = "block";
+        }
+
+        // Calculate age from DOB
+        function calculateAge() {
+            const dob = new Date(document.getElementById("dob").value);
+            const today = new Date();
+            let age = today.getFullYear() - dob.getFullYear();
+            const m = today.getMonth() - dob.getMonth();
+
+            if (m < 0 || (m === 0 && today.getDate() < dob.getDate())) {
+                age--;
+            }
+
+            document.getElementById("ageResult").textContent = `You are ${age} years old.`;
+        }
+    </script>
+</body>
+</html>
